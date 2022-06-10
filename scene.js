@@ -22,13 +22,15 @@ function init() {
 
   controls = new THREE.OrbitControls(camera, renderer.domElement);
   controls.enabled = true;
-  controls.minDistance = 700;
+  controls.minDistance = 200;
   controls.maxDistance = 1500;
 
   const materialArray = createMaterialArray(skyboxImage);
   skyboxGeo = new THREE.BoxGeometry(10000, 10000, 10000);
   skybox = new THREE.Mesh(skyboxGeo, materialArray);
   scene.add(skybox);
+
+  addPlanets()
 
   animate();
 }
@@ -74,6 +76,22 @@ function animate() {
   controls.update();
   renderer.render(scene, camera);
   requestAnimationFrame(animate);
+}
+
+
+function addPlanets(){
+
+  let coordinates = [{x:5000,  y:1000, z: 200 }, {x:-5000,  y: 400, z: 1000} , {x:-5000,  y: 400, z: 5000}, {x:-5000,  y: 2000, z: 5000} ]
+
+  for (let cor of coordinates) {
+    console.log(cor)
+    const geometry = new THREE.SphereGeometry( 100, 200, 100 );
+    const material = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+    const sphere = new THREE.Mesh( geometry, material );
+    sphere.position.set(cor.x,cor.y,cor.z);
+    scene.add( sphere );
+  }
+  
 }
 
 init();

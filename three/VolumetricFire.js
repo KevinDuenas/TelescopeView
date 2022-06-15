@@ -572,7 +572,7 @@
 
   };
 
-  VolumetricFire.texturePath = './textures/';
+  VolumetricFire.texturePath = './../textures/';
 
   ///
 
